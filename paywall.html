@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Crimson Empire — Unlock the Book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0b0706; --panel:#150f0c; --crimson:#7c1526; --crimson-light:#b23a4f;
+    --gold:#c6a26b; --gold-dim:#8a7350; --parchment:#ece1cc; --parchment-dim:#aa9a7c;
+    --line: rgba(198,162,107,0.16);
+    --serif: "EB Garamond", Georgia, serif; --display: "Cinzel", serif;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; min-height:100%; background:var(--void); color:var(--parchment); font-family:var(--serif); }
+  body{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    min-height:100vh; padding:2.5rem 1.5rem; text-align:center;
+    background:
+      radial-gradient(ellipse 55% 40% at 78% 18%, rgba(178,58,79,0.30), rgba(178,58,79,0) 70%),
+      linear-gradient(180deg, #1c0f11 0%, #120b0a 45%, #0b0706 100%);
+  }
+  .kicker{ font-style:italic; color:var(--parchment-dim); letter-spacing:0.06em; font-size:1rem; margin:0 0 0.6rem; }
+  h1{ font-family:var(--display); font-weight:700; font-size:clamp(1.8rem,6vw,2.8rem); margin:0; color:var(--parchment); text-shadow:0 0 30px rgba(124,21,38,0.5); }
+  .subtitle{ font-family:var(--display); color:var(--gold); font-size:clamp(0.95rem,2.4vw,1.2rem); letter-spacing:0.05em; margin:0.6rem 0 0; }
+  .price{
+    margin:2rem 0 0.4rem; font-family:var(--display); font-size:2.1rem; color:var(--parchment);
+  }
+  .price span{ color:var(--gold-dim); font-size:1rem; font-family:var(--serif); }
+  .blurb{ max-width:36em; color:var(--parchment-dim); font-size:1rem; line-height:1.6; margin:1.2rem 0 2.2rem; }
+  .pay-options{ display:flex; flex-direction:column; gap:0.9rem; width:100%; max-width:340px; }
+  .pay-btn{
+    display:block; text-decoration:none; font-family:var(--display); letter-spacing:0.03em;
+    font-size:1rem; padding:0.95rem 1.2rem; border-radius:3px; border:1px solid var(--line);
+    background:var(--panel); color:var(--parchment); transition:border-color 0.2s ease, background 0.2s ease;
+  }
+  .pay-btn:hover{ border-color:var(--gold-dim); background:#1c1410; }
+  .pay-btn .brand{ color:var(--gold); }
+  .fine-print{ margin-top:2rem; color:var(--parchment-dim); font-size:0.8rem; font-style:italic; max-width:30em; }
+  #status{ margin-top:1.2rem; font-size:0.9rem; color:var(--crimson-light); min-height:1.2em; }
+</style>
+</head>
+<body>
+  <p class="kicker">A Novel</p>
+  <h1>Crimson Empire</h1>
+  <p class="subtitle">The Rise of Muqsit</p>
+
+  <p class="price"><span>Full book —</span> Rs. 199</p>
+  <p class="blurb">Lahore Fort, 1566 to present day: a sealed vampire empire, a half-human heir, and the old blood of the city deciding whether his crown is a warning or a beginning. Unlock the full book below.</p>
+
+  <div class="pay-options">
+    <a class="pay-btn" href="/api/checkout/jazzcash-start">Pay with <span class="brand">JazzCash</span></a>
+    <a class="pay-btn" href="/api/checkout/easypaisa-start">Pay with <span class="brand">Easypaisa</span></a>
+  </div>
+
+  <p id="status"></p>
+
+  <p class="fine-print">You'll be redirected to JazzCash's or Easypaisa's own secure payment page to complete the transaction. The book unlocks automatically once payment is confirmed.</p>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    if (params.get('failed')) {
+      document.getElementById('status').textContent = 'Payment was not completed — please try again.';
+    }
+  </script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/crimson-empire.html" }
+    { "source": "/", "destination": "/api/book" },
+    { "source": "/crimson-empire.html", "destination": "/api/book" }
   ]
 }

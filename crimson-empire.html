@@ -390,6 +390,10 @@
       padding: 4rem 1.5rem 1rem;
     }
 
+    .chapter-illus+.chapter-head {
+      padding-top: 1.8rem;
+    }
+
     .chapter-head-inner {
       max-width: 640px;
       margin: 0 auto;
@@ -405,6 +409,29 @@
 
     .chapter-orn {
       margin: 0 0 0.9rem;
+    }
+
+    .chapter-illus {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: var(--void);
+    }
+
+    .chapter-illus img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      display: block;
+    }
+
+    .chapter-illus::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(11, 7, 6, 0) 55%, var(--void) 100%);
     }
 
     .chapter-orn svg {
@@ -1968,6 +1995,9 @@
 
     <!-- CHAPTER 20 (author's "21") -->
     <div class="slide chapter-slide" id="ch20" data-title="The Grandfather's Challenge">
+      <div class="chapter-illus">
+        <img src="/images/ch20-grandfathers-challenge.jpg" alt="Muqsit, Jasmine, and Azaar's grandfather face off atop the ruins above a crimson-lit Lahore skyline" loading="lazy">
+      </div>
       <div class="chapter-head">
         <div class="chapter-head-inner">
           <p class="chapter-mark">XX</p>

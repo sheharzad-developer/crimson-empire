@@ -4,6 +4,9 @@ const { hasValidAccess } = require('./_lib/access-token');
 
 const HTML_PATH = path.join(__dirname, '..', 'crimson-empire.html');
 
+// Set to true to gate Chapter Two onward behind the JazzCash/Easypaisa paywall again.
+const PAYWALL_ENABLED = false;
+
 const PAID_TAIL_START = '<div class="slide chapter-slide" id="ch2"';
 const BOOK_END_MARK = '</div><!-- /.book -->';
 const TOC_LIST_OPEN = '<ol id="tocList">';
@@ -72,7 +75,7 @@ function getVariants() {
 
 module.exports = (req, res) => {
   const { full, locked } = getVariants();
-  const authorized = hasValidAccess(req);
+  const authorized = !PAYWALL_ENABLED || hasValidAccess(req);
 
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
